@@ -1,0 +1,25 @@
+.select-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 8px;
+    flex-grow: 1;
+}
+
+.select {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--content-color);
+    padding: 0.25em 0.5em;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    line-height: inherit;
+    border-radius: 4px;
+}
+
+.heading {
+    width: 200px;
+}

@@ -1,0 +1,19 @@
+.button {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 23px;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 0.25px;
+    background-color: var(--app-color-2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--app-color-1);
+
+    &:hover {
+        background-color: var(--app-color-3);
+    }
+}
