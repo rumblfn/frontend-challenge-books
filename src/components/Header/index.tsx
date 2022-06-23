@@ -24,6 +24,7 @@ export const Header:FC = () => {
                 <h1 className={styles.headiing}>Search for books</h1>
                 <div className={styles['header-box_top']}>
                     <DefaultInput 
+                        enterPressed={handleSearch}
                         defaultValue={inputField}
                         placeholder="Type subtitle here ..." 
                     />
