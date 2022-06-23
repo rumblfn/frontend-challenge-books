@@ -1,3 +1,4 @@
+import { searchSortingType, searchCategoryType } from './../../types/header';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { Book } from '../../types/book';
@@ -16,7 +17,10 @@ export interface responseBooksProps {
     error?: ErrorProps;
 }
 
-export const fetchBooks = (search: string, startIndex: number, limit = 30) => {
+export const fetchBooks = (
+    search: string, startIndex: number, 
+    category: searchCategoryType = 'all', orderBy: searchSortingType = 'relevance', limit = 30
+) => {
     return async (dispatch: Dispatch<FetchingBooksAction>) => {
         try {
             dispatch({
@@ -25,7 +29,8 @@ export const fetchBooks = (search: string, startIndex: number, limit = 30) => {
 
             const response = await axios.get<responseBooksProps>(
                 `https://www.googleapis.com/books/v1/volumes
-                    ?q=${search}
+                    ?q=${search}+subject=${category}
+                    &orderBy=${orderBy}
                     &startIndex=${startIndex}
                     &maxResults=${limit}
                     &key=${process.env.REACT_APP_API_KEY}`

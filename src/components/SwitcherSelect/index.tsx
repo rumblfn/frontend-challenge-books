@@ -1,11 +1,14 @@
 import { FC } from "react";
-import { selectType } from "../../types/header";
+import { useActions } from "../../hooks/useActions";
+import { searchCategoryType, searchSortingType, selectType, setterSelect } from "../../types/header";
 import styles from './style.module.scss'
 
-const categoriesTypes = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry']
-const sortingTypes = ["relevance", "newest"]
+const categoriesTypes: searchCategoryType[] = [
+    'all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'
+]
+const sortingTypes: searchSortingType[] = ["relevance", "newest"]
 
-const getFields = (type: selectType) => {
+const getFields = (type: selectType): setterSelect[] => {
     switch (type) {
         case "categories":
             return categoriesTypes;
@@ -17,20 +20,26 @@ const getFields = (type: selectType) => {
 interface SwitcherSelectProps {
     heading: string;
     type: selectType;
-    setValue: (value: string) => void;
 }
 
-export const SwitcherSelect:FC<SwitcherSelectProps> = ({heading, type, setValue}) => {
+export const SwitcherSelect:FC<SwitcherSelectProps> = ({heading, type}) => {
     const selectOptions = getFields(type)
+
+    const {setSortingField, setCategoryField} = useActions()
 
     return (
         <div className={styles['select-box']}>
             <h4 className={styles.heading}>{heading}</h4>
             <select name="selectField"
                 className={styles.select}
-                onChange={e => setValue(e.target.value)}
+                onChange={e => {
+                    const value = e.target.value
+                    if (sortingTypes.includes(value)) {
+                        setSortingField(value)
+                    }
+                }}
             >
-                {selectOptions.map((textOption: string, index: number) => 
+                {selectOptions.map((textOption: setterSelect, index: number) => 
                     <option 
                         key={`${heading}${index}`}
                         value={textOption}

@@ -1,3 +1,14 @@
+interface volumeInfoProps {
+    title: string;
+    authors: string[];
+    description: string;
+    imageLinks: {
+        smallThumbnail: string;
+        thumbnail: string;
+    }
+}
+
 export interface Book {
-    id: number;
+    id: string;
+    volumeInfo: volumeInfoProps;
 }

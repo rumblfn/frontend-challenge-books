@@ -1,18 +1,20 @@
 import { FC, useState } from "react";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { Button } from "../Button";
 import { DefaultInput } from "../DefaultInput";
 import { SwitcherSelect } from "../SwitcherSelect";
 import styles from './style.module.scss'
 
 export const Header:FC = () => {
-    const [searchSubText, setSearchSubText] = useState<string>('');
-    const [searchCategory, setSearchCategory] = useState<string>('all');
-    const [sortingType, setSortingType] = useState<string>('relevance');
+    const {inputField, searchCategory, searchIndex, searchSorting} = useTypedSelector(state => state.params);
+    const {setSearchField} = useActions()
 
     const handleSearch = () => {
-        console.log(searchSubText)
+        console.log(inputField)
         console.log(searchCategory)
-        console.log(sortingType)
+        console.log(searchSorting)
+        console.log(searchIndex)
     }
 
     return (
@@ -21,7 +23,7 @@ export const Header:FC = () => {
                 <div className={styles['header-box_top']}>
                     <DefaultInput 
                         placeholder="Type subtitle here ..."  
-                        setValue={setSearchSubText}
+                        setValue={setSearchField}
                     />
                     <Button 
                         text="Search"
@@ -32,10 +34,8 @@ export const Header:FC = () => {
                     <SwitcherSelect 
                         heading="Categories" 
                         type="categories" 
-                        setValue={setSearchCategory}
                     />
                     <SwitcherSelect 
-                        setValue={setSortingType}
                         heading="Sorting by" 
                         type="sorting" 
                     />
