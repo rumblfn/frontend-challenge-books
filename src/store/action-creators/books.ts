@@ -16,10 +16,13 @@ export interface responseBooksProps {
     error?: ErrorProps;
 }
 
-export const fetchBooks = (
-    search: string, startIndex: number, 
-    category: searchCategoryType = 'all', orderBy: searchSortingType = 'relevance', limit = 30
-) => {
+const history = {
+    search: '',
+    category: '',
+    orderBy: ''
+}
+
+export const fetchBooks = (startIndex: number, limit = 30) => {
     return async (dispatch: Dispatch<BooksActionReducer>) => {
         try {
             dispatch({
@@ -27,13 +30,13 @@ export const fetchBooks = (
             })
 
             let url = 'https://www.googleapis.com/books/v1/volumes?q='
-            if (search) {
-                url += `+intitle:${search}`
+            if (history.search) {
+                url += `+intitle:${history.search}`
             }
-            if (category !== 'all') {
-                url += `+subject:${category}`
+            if (history.category !== 'all') {
+                url += `+subject:${history.category}`
             }
-            url += `&orderBy=${orderBy}&startIndex=${startIndex}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
+            url += `&orderBy=${history.orderBy}&startIndex=${startIndex}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
 
             const response = await axios.get<responseBooksProps>(url)
 
@@ -64,6 +67,10 @@ export const fetchBooks = (
 export const fetchFirstBooks = (
     search: string, category: searchCategoryType = 'all', orderBy: searchSortingType = 'relevance', limit = 30
 ) => {
+    history.search = search
+    history.category = category
+    history.orderBy = orderBy
+
     return async (dispatch: Dispatch<BooksActionReducer>) => {
         try {
             dispatch({
@@ -71,14 +78,13 @@ export const fetchFirstBooks = (
             })
 
             let url = 'https://www.googleapis.com/books/v1/volumes?q= '
-            if (search) {
-                url += `+intitle:${search}`
+            if (history.search) {
+                url += `+intitle:${history.search}`
             }
-            if (category !== 'all') {
-                url += `+subject:${category}`
+            if (history.category !== 'all') {
+                url += `+subject:${history.category}`
             }
-            url += `&orderBy=${orderBy}&startIndex=${0}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
-            console.log(url)
+            url += `&orderBy=${history.orderBy}&startIndex=${0}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
 
             const response = await axios.get<responseBooksProps>(url)
 

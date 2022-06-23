@@ -10,13 +10,11 @@ interface LoadMoreProps {
 }
 
 export const LoadMore:FC<LoadMoreProps> = ({index}) => {
-    const {inputField, searchCategory, searchSorting} = useTypedSelector(state => state.params)
     const {loading, error} = useTypedSelector(state => state.books)
 
     const {fetchBooks} = useActions()
-    console.log(inputField)
     const handleNewBooks = () => {
-        fetchBooks(inputField, index, searchCategory, searchSorting)
+        fetchBooks(index)
     }
 
     return (
