@@ -8,6 +8,7 @@ interface BookCardProps {
     book: Book
 }
 
+
 export const BookCard:FC<BookCardProps> = ({book}) => {
     const {categories, authors, title, imageLinks} = book.volumeInfo
     const navigate = useNavigate()
