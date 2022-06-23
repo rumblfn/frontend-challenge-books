@@ -13,15 +13,12 @@ export const booksReducer = (state = initialState, action: BooksActionReducer): 
     switch (action.type) {
         case BooksActionTypesReducer.FETCH_BOOKS_FIRST_LOADING:
             return {
-                ...state,
-                firstLoading: true,
-                firstError: '',
-                books: []
+                ...initialState,
+                firstLoading: true
             }
         case BooksActionTypesReducer.FETCH_BOOKS_FIRST_ERROR:
             return {
-                ...state,
-                firstLoading: false,
+                ...initialState,
                 firstError: action.payload
             }
         case BooksActionTypesReducer.FETCH_BOOKS_LOADING:
@@ -38,19 +35,14 @@ export const booksReducer = (state = initialState, action: BooksActionReducer): 
             }
         case BooksActionTypesReducer.FETCH_BOOKS_FIRST_SUCCESS:
             return {
-                ...state,
-                firstLoading: false,
-                firstError: '',
+                ...initialState,
                 totalItems: action.payload.totalItems,
                 books: [...action.payload.items]
             }
         case BooksActionTypesReducer.FETCH_BOOKS_SUCCESS:
             return {
+                ...initialState,
                 totalItems: action.payload.totalItems,
-                firstLoading: false,
-                firstError: '',
-                loading: false,
-                error: '',
                 books: [...state.books, ...action.payload.items]
             }
         default:

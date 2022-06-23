@@ -26,7 +26,14 @@ export const fetchBooks = (
                 type: BooksActionTypesReducer.FETCH_BOOKS_LOADING
             })
 
-            const url = `https://www.googleapis.com/books/v1/volumes?q=+intitle:${search}+subject:${category}&orderBy=${orderBy}&startIndex=${startIndex}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
+            let url = 'https://www.googleapis.com/books/v1/volumes?q='
+            if (search) {
+                url += `+intitle:${search}`
+            }
+            if (category !== 'all') {
+                url += `+subject:${category}`
+            }
+            url += `&orderBy=${orderBy}&startIndex=${startIndex}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
 
             const response = await axios.get<responseBooksProps>(url)
 
@@ -63,7 +70,15 @@ export const fetchFirstBooks = (
                 type: BooksActionTypesReducer.FETCH_BOOKS_FIRST_LOADING
             })
 
-            const url =`https://www.googleapis.com/books/v1/volumes?q=+intitle:${search}+subject:${category}&orderBy=${orderBy}&startIndex=${0}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
+            let url = 'https://www.googleapis.com/books/v1/volumes?q= '
+            if (search) {
+                url += `+intitle:${search}`
+            }
+            if (category !== 'all') {
+                url += `+subject:${category}`
+            }
+            url += `&orderBy=${orderBy}&startIndex=${0}&maxResults=${limit}&key=${process.env.REACT_APP_API_KEY}`
+            console.log(url)
 
             const response = await axios.get<responseBooksProps>(url)
 
@@ -83,9 +98,13 @@ export const fetchFirstBooks = (
             }
 
         } catch (e) {
+            let message = 'some errors'
+            if (!search) {
+                message = 'Ошибка: Вы ничего не ввели в поиск'
+            }
             dispatch({
                 type: BooksActionTypesReducer.FETCH_BOOKS_FIRST_ERROR, 
-                payload: 'some errors'
+                payload: message
             })
         }
     }

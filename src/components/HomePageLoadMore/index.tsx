@@ -14,7 +14,7 @@ export const LoadMore:FC<LoadMoreProps> = ({index}) => {
     const {loading, error} = useTypedSelector(state => state.books)
 
     const {fetchBooks} = useActions()
-
+    console.log(inputField)
     const handleNewBooks = () => {
         fetchBooks(inputField, index, searchCategory, searchSorting)
     }
