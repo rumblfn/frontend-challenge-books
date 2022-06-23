@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/frontend-challenge-books/static/css/main.279a134e.css",
-    "main.js": "/frontend-challenge-books/static/js/main.2b96f66e.js",
+    "main.js": "/frontend-challenge-books/static/js/main.6414e083.js",
     "static/js/787.3c0b46c8.chunk.js": "/frontend-challenge-books/static/js/787.3c0b46c8.chunk.js",
     "index.html": "/frontend-challenge-books/index.html",
     "main.279a134e.css.map": "/frontend-challenge-books/static/css/main.279a134e.css.map",
-    "main.2b96f66e.js.map": "/frontend-challenge-books/static/js/main.2b96f66e.js.map",
+    "main.6414e083.js.map": "/frontend-challenge-books/static/js/main.6414e083.js.map",
     "787.3c0b46c8.chunk.js.map": "/frontend-challenge-books/static/js/787.3c0b46c8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.279a134e.css",
-    "static/js/main.2b96f66e.js"
+    "static/js/main.6414e083.js"
   ]
 }
