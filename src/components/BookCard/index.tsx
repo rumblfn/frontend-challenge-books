@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useActions } from "../../hooks/useActions";
 import { Book } from "../../types/book";
 import styles from './style.module.scss'
 
@@ -8,9 +10,16 @@ interface BookCardProps {
 
 export const BookCard:FC<BookCardProps> = ({book}) => {
     const {categories, authors, title, imageLinks} = book.volumeInfo
+    const navigate = useNavigate()
+    const {setCurrentBook} = useActions()
+
+    const handleClick = () => {
+        setCurrentBook(book)
+        navigate('/book')
+    }
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={handleClick}>
             <div className={styles['img-box']}>
                 {imageLinks ? 
                     <img className={styles.img}

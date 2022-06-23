@@ -6,7 +6,7 @@ import { Loader } from "../Loader";
 import styles from './style.module.scss'
 
 interface LoadMoreProps {
-    index: number
+    index: number;
 }
 
 export const LoadMore:FC<LoadMoreProps> = ({index}) => {
@@ -27,7 +27,7 @@ export const LoadMore:FC<LoadMoreProps> = ({index}) => {
                         <Loader />
                     </div>
                 : error ? error
-                : <Button 
+                : <Button padding='10px 15px'
                     text="Load more"
                     click={handleNewBooks}
                 />

@@ -1,6 +1,9 @@
 .page {
     max-width: 1280px;
     margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-box {
@@ -9,6 +12,7 @@
     justify-content: center;
     margin-bottom: 32px;
     gap: 24px;
+    flex-grow: 1;
 
     @media  screen and (max-width: 970px) {
         gap: 16px;

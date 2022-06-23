@@ -8,15 +8,15 @@ import styles from './style.module.scss'
 
 export const HomePage:FC = () => {
     const {books} = useTypedSelector(state => state.books)
-    let currentBookId: string | null = null;
+    const bookIds: string[] = []
 
     return (
         <div className={styles.page}>
             <TotalItems />
             <main className={styles['main-box']}>
                 {books.map((book: Book) => {
-                    if (book.id !== currentBookId) {
-                        currentBookId = book.id
+                    if (!bookIds.includes(book.id)) {
+                        bookIds.push(book.id)
                         return (
                             <div className={styles['card-box']} key={book.id}>
                                 <BookCard book={book} />

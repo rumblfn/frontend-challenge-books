@@ -1,3 +1,4 @@
+import { currentBookReducer } from './reducers/currentBook';
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -12,7 +13,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({ 
   books: booksReducer,
-  params: paramsReducer
+  params: paramsReducer,
+  currentBook: currentBookReducer
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -6,7 +6,7 @@ import { HomePage } from './routes/Home';
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <Header />
       <Routes>
         <Route path="/book" element={ <BookPage /> } />

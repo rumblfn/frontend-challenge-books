@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { Button } from "../Button";
@@ -10,8 +11,10 @@ import styles from './style.module.scss'
 export const Header:FC = () => {
     const {inputField, searchCategory, searchSorting} = useTypedSelector(state => state.params);
     const {fetchFirstBooks} = useActions()
+    const navigate = useNavigate()
 
     const handleSearch = () => {
+        navigate('/')
         fetchFirstBooks(inputField, searchCategory, searchSorting)
     }
 
