@@ -22,7 +22,20 @@ const history = {
     orderBy: ''
 }
 
-export const fetchBooks = (startIndex: number, limit = 30) => {
+export const fetchBooks = (
+    search: string, category: searchCategoryType, 
+    order: searchSortingType, startIndex: number, limit = 30
+) => {
+    if (!history.search) {
+        history.search = search
+    }
+    if (!history.category) {
+        history.category = category
+    }
+    if (!history.orderBy) {
+        history.orderBy = order
+    }
+
     return async (dispatch: Dispatch<BooksActionReducer>) => {
         try {
             dispatch({
