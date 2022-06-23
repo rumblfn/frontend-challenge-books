@@ -21,6 +21,7 @@ export const Header:FC = () => {
     return (
         <header className={styles['header-bg']}>
             <div className={styles['header-box']}>
+                <h1 className={styles.headiing}>Search for books</h1>
                 <div className={styles['header-box_top']}>
                     <DefaultInput 
                         defaultValue={inputField}
