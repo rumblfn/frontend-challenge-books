@@ -1,0 +1,30 @@
+.page {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.main-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+    gap: 24px;
+
+    @media  screen and (max-width: 970px) {
+        gap: 16px;
+    }
+}
+
+.card-box {
+    width: 23%;
+
+    @media  screen and (max-width: 1189px) {
+        width: 30%;
+    }
+    @media  screen and (max-width: 790px) {
+        width: 48%;
+    }
+    @media  screen and (max-width: 550px) {
+        width: 94%;
+    }
+}

@@ -1,4 +1,3 @@
-import { searchCategoryType, searchSortingType } from './../../types/header';
 import { ParamsActionTypesReducer } from './../../types/params';
 import { Dispatch } from 'redux';
 
@@ -11,7 +10,7 @@ export const setSearchField = (text: string) => {
     }
 }
 
-export const setSortingField = (text: searchSortingType) => {
+export const setSortingField = (text: string) => {
     return async (dispatch: Dispatch) => {
         dispatch({
             type: ParamsActionTypesReducer.SET_SEARCH_SORTING,
@@ -20,7 +19,7 @@ export const setSortingField = (text: searchSortingType) => {
     }
 }
 
-export const setCategoryField = (text: searchCategoryType) => {
+export const setCategoryField = (text: string) => {
     return async (dispatch: Dispatch) => {
         dispatch({
             type: ParamsActionTypesReducer.SET_SEARCH_CATEGORY,

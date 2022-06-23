@@ -15,7 +15,8 @@ export const booksReducer = (state = initialState, action: BooksActionReducer): 
             return {
                 ...state,
                 firstLoading: true,
-                firstError: ''
+                firstError: '',
+                books: []
             }
         case BooksActionTypesReducer.FETCH_BOOKS_FIRST_ERROR:
             return {

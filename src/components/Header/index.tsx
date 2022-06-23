@@ -1,20 +1,18 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { Button } from "../Button";
 import { DefaultInput } from "../DefaultInput";
-import { SwitcherSelect } from "../SwitcherSelect";
+import { CategorySelect } from "../SwitcherSelect/category";
+import { SortingSelect } from "../SwitcherSelect/sorting";
 import styles from './style.module.scss'
 
 export const Header:FC = () => {
-    const {inputField, searchCategory, searchIndex, searchSorting} = useTypedSelector(state => state.params);
-    const {setSearchField} = useActions()
+    const {inputField, searchCategory, searchSorting} = useTypedSelector(state => state.params);
+    const {fetchFirstBooks} = useActions()
 
     const handleSearch = () => {
-        console.log(inputField)
-        console.log(searchCategory)
-        console.log(searchSorting)
-        console.log(searchIndex)
+        fetchFirstBooks(inputField, searchCategory, searchSorting)
     }
 
     return (
@@ -22,8 +20,8 @@ export const Header:FC = () => {
             <div className={styles['header-box']}>
                 <div className={styles['header-box_top']}>
                     <DefaultInput 
-                        placeholder="Type subtitle here ..."  
-                        setValue={setSearchField}
+                        defaultValue={inputField}
+                        placeholder="Type subtitle here ..." 
                     />
                     <Button 
                         text="Search"
@@ -31,13 +29,13 @@ export const Header:FC = () => {
                     />
                 </div>
                 <div className={styles['header-box_bottom']}>
-                    <SwitcherSelect 
-                        heading="Categories" 
-                        type="categories" 
+                    <CategorySelect 
+                        defaultValue={searchCategory}
+                        heading="Categories"
                     />
-                    <SwitcherSelect 
-                        heading="Sorting by" 
-                        type="sorting" 
+                    <SortingSelect 
+                        defaultValue={searchSorting}
+                        heading="Sorting by"
                     />
                 </div>
             </div>
